@@ -33,7 +33,7 @@
                      items: 4
                  }
              }
-         });*/
+         });
         $('.product_thumbnail_slides').owlCarousel({
             items: 1,
             margin: 0,
@@ -44,7 +44,7 @@
             autoplay: true,
             autoplayTimeout: 5000,
             smartSpeed: 1000
-        });
+        });*/
     }
 
     // :: Header Cart Active Code
@@ -158,6 +158,7 @@
     // ## window functions ##
 
     function makeAjax(url, type) {
+
         return $.ajax({
             url: url,
             type: type,
@@ -165,6 +166,24 @@
         });
     }
 
+    function getQuery(url) {
+
+        var queries = {},
+            queryStringSpliter = url.split("?")[1],
+            singleItems = null;
+        if (queryStringSpliter) {
+
+            singleItems = queryStringSpliter.split("&");
+            singleItems.forEach(function(items) {
+
+                var query = items.split("=");
+                queries[query[0]] = query[1];
+            });
+        }
+        return queries;
+    }
+
     window.makeAjax = makeAjax;
+    window.getQuery = getQuery;
 
 })(jQuery);

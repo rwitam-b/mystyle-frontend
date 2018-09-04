@@ -5,3 +5,19 @@
 ::-webkit-scrollbar {
     display: none;
 }
+
+.coming-soon {
+    color: green;
+}
+
+.dropdown.cn-col-4 {
+    width: 220px !important;
+}
+
+.single-product-wrapper .product-img img {
+    height: 372px;
+}
+
+.single-image-item {
+    height: 480px;
+}
