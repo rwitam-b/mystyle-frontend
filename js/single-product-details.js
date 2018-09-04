@@ -23,7 +23,7 @@
             $('.product_thumbnail_slides').owlCarousel({
                 items: 1,
                 margin: 0,
-                loop: true,
+                loop: itemDetails.imageUrls.length > 1,
                 nav: true,
                 navText: ["<img src='img/core-img/long-arrow-left.svg' alt=''>", "<img src='img/core-img/long-arrow-right.svg' alt=''>"],
                 dots: false,
