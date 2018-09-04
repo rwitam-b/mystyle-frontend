@@ -45,6 +45,8 @@
                 });
                 $("#productColor").html(colorList);
                 $("#productColor").niceSelect();
+            }else{
+                $("#productColor").hide();
             }
             if (itemDetails.specs.size) {
                 itemDetails.specs.size.forEach(function(size) {
@@ -57,6 +59,8 @@
                 });
                 $("#productSize").html(sizeList);
                 $("#productSize").niceSelect();
+            }else{
+                $("#productSize").hide();
             }
         });
 
