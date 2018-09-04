@@ -44,9 +44,7 @@
                     }
                 });
                 $("#productColor").html(colorList);
-            } else {
-                $(".nice-select").css("display", "none");
-                $(".nice-select.mr5").css("display", "block");
+                $("#productColor").niceSelect();
             }
             if (itemDetails.specs.size) {
                 itemDetails.specs.size.forEach(function(size) {
@@ -57,9 +55,8 @@
                         sizeList += '<option value="value">Size: ' + size + '</option>';
                     }
                 });
-                $(".nice-select.mr5").html(sizeList);
-            } else {
-                $(".nice-select.mr5").css("display", "none");
+                $("#productSize").html(sizeList);
+                $("#productSize").niceSelect();
             }
         });
 
