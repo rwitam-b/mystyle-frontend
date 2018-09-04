@@ -48,13 +48,13 @@
                 $(".nice-select").css("display", "none");
                 $(".nice-select.mr5").css("display", "block");
             }
-            if (itemDetails.specs.color) {
+            if (itemDetails.specs.size) {
                 itemDetails.specs.size.forEach(function(size) {
 
                     if (!sizeList) {
-                        sizeList = '<option value="value">Color: ' + color + '</option>';
+                        sizeList = '<option value="value">Size: ' + size + '</option>';
                     } else {
-                        sizeList += '<option value="value">Color: ' + color + '</option>';
+                        sizeList += '<option value="value">Size: ' + size + '</option>';
                     }
                 });
                 $(".nice-select.mr5").html(sizeList);
