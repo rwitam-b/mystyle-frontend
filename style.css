@@ -21,6 +21,8 @@
 .single-image-item {
     max-height: 80vh;
     max-width: 50vw;
-    height:auto;
-    width:auto !important;
+    height: auto;
+    width: auto !important;
+    margin-left: 20%;
+    margin-top: 1rem;
 }
