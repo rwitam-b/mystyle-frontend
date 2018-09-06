@@ -12,6 +12,7 @@
                 '<div class="col-12 col-sm-6 col-lg-4" id=' + content.details.id + '>' +
                 '<div class="single-product-wrapper">' +
                 '<!-- Product Image -->' +
+                '<a href="single-product-details.html?product_id=' + content.details.id + '">' +
                 '<div class="product-img">' +
                 '<img src="' + content.images[0] + '" alt="">' +
                 '<!-- Hover Thumb -->' +
@@ -25,6 +26,7 @@
                 '<a href="#" class="favme fa fa-heart"></a>' +
                 '</div>' +
                 '</div>' +
+                '</a>'
                 '<!-- Product Description -->' +
                 '<div class="product-description">' +
                 '<span>' + content.details.brandName + '</span>' +
