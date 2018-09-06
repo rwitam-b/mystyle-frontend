@@ -6,7 +6,6 @@
 
         var xhrObj = makeAjax("../response/prod_ids.json", "get");
         xhrObj.done(function (itemDetail) {
-
             var imagesList,
                 colorList,
                 sizeList,

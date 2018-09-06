@@ -187,6 +187,8 @@
         // Getting product details from local storage
         var currentProduct = JSON.parse(window.localStorage.getItem("mystyle_curr_prod"));
         var productImage = currentProduct.imageUrls[Math.floor(Math.random() * currentProduct.imageUrls.length)];
+        var productColor = $("#productColor").next().find(".current").html().split(":")[1].trim();
+        var productSize = $("#productSize").next().find(".current").html().split(":")[1].trim();
         var template = '<!-- Single Cart Item -->' +
             '<div class="single-cart-item">' +
             '<a href="single-product-details.html?product_id=' + currentProduct.id + '" class="product-image">' +
@@ -196,8 +198,8 @@
             '<span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>' +
             '<span class="badge">' + currentProduct.brandName + '</span>' +
             '<h6>' + currentProduct.productName + '</h6>' +
-            '<p class="size">Size: S</p>' +
-            '<p class="color">Color: Red</p>' +
+            '<p class="size">Size: ' + productSize + '</p>' +
+            '<p class="color">Color: ' + productColor + '</p>' +
             '<p class="price">₹' + currentProduct.discountedPrice + '</p>' +
             '</div>' +
             '</a>' +
