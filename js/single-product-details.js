@@ -67,6 +67,6 @@
         });
 
     } else {
-        window.location.href = "/";
+        window.location.href = "/home.html";
     }
 })(jQuery);
