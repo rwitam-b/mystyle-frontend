@@ -11,12 +11,15 @@
             var template = '<!-- Single Product -->' +
                 '<div class="col-12 col-sm-6 col-lg-4" id=' + content.details.id + '>' +
                 '<div class="single-product-wrapper">' +
-                '<!-- Product Image -->' +
-                '<a href="single-product-details.html?product_id=' + content.details.id + '">' +
+                '<!-- Product Image -->' +                
                 '<div class="product-img">' +
+                '<a href="single-product-details.html?product_id=' + content.details.id + '">' +
                 '<img src="' + content.images[0] + '" alt="">' +
+                '</a>'+
                 '<!-- Hover Thumb -->' +
+                '<a href="single-product-details.html?product_id=' + content.details.id + '">' +
                 '<img class="hover-img" src="' + content.images[1] + '" alt="">' +
+                '</a>'+
                 '<!-- Product Badge -->' +
                 '<!--div class="product-badge new-badge">' +
                 '<span>New</span>' +
@@ -25,8 +28,7 @@
                 '<div class="product-favourite">' +
                 '<a href="#" class="favme fa fa-heart"></a>' +
                 '</div>' +
-                '</div>' +
-                '</a>'
+                '</div>' +                
                 '<!-- Product Description -->' +
                 '<div class="product-description">' +
                 '<span>' + content.details.brandName + '</span>' +
