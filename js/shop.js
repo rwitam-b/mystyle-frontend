@@ -25,21 +25,13 @@
                 '<a href="#" class="favme fa fa-heart"></a>' +
                 '</div>' +
                 '</div>' +
-
                 '<!-- Product Description -->' +
                 '<div class="product-description">' +
                 '<span>' + content.details.brandName + '</span>' +
                 '<a href="single-product-details.html?product_id=' + content.details.id + '">' +
                 '<h6>' + content.details.productName + '</h6>' +
                 '</a>' +
-                '<p class="product-price">&#x20b9;' + content.details.newPrice + '&nbsp; &nbsp;<span class="old-price">&#x20b9;' + content.details.oldPrice + '</span></p>' +
-                '<!-- Hover Content -->' +
-                '<div class="hover-content">' +
-                '<!-- Add to Cart -->' +
-                '<div class="add-to-cart-btn">' +
-                '<a href="#" class="btn essence-btn">Add to Cart</a>' +
-                '</div>' +
-                '</div>' +
+                '<p class="product-price">&#x20b9;' + content.details.newPrice + '&nbsp; &nbsp;<span class="old-price">&#x20b9;' + content.details.oldPrice + '</span></p>' +                
                 '</div>' +
                 '</div>' +
                 '</div>';

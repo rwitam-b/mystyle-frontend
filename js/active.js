@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
     'use strict';
 
     var $window = $(window);
@@ -55,15 +55,15 @@
     var cartOverlayOn = "cart-bg-overlay-on";
     var cartOn = "cart-on";
 
-    cartbtn1.on('click', function() {
+    cartbtn1.on('click', function () {
         cartOverlay.toggleClass(cartOverlayOn);
         cartWrapper.toggleClass(cartOn);
     });
-    cartOverlay.on('click', function() {
+    cartOverlay.on('click', function () {
         $(this).removeClass(cartOverlayOn);
         cartWrapper.removeClass(cartOn);
     });
-    cartbtn2.on('click', function() {
+    cartbtn2.on('click', function () {
         cartOverlay.removeClass(cartOverlayOn);
         cartWrapper.removeClass(cartOn);
     });
@@ -78,7 +78,7 @@
     }
 
     // :: Sticky Active Code
-    $window.on('scroll', function() {
+    $window.on('scroll', function () {
         if ($window.scrollTop() > 0) {
             $('.header_area').addClass('sticky');
         } else {
@@ -92,7 +92,7 @@
     }*/
 
     // :: Slider Range Price Active Code
-    $('.slider-range-price').each(function() {
+    $('.slider-range-price').each(function () {
         var min = jQuery(this).data('min');
         var max = jQuery(this).data('max');
         var unit = jQuery(this).data('unit');
@@ -105,7 +105,7 @@
             min: min,
             max: max,
             values: [value_min, value_max],
-            slide: function(event, ui) {
+            slide: function (event, ui) {
                 var result = label_result + " " + unit + ui.values[0] + ' - ' + unit + ui.values[1];
                 console.log(t);
                 t.closest('.slider-range').find('.range-price').html(result);
@@ -116,15 +116,15 @@
     // :: Favorite Button Active Code
     var favme = $(".favme");
 
-    favme.on('click', function() {
+    favme.on('click', function () {
         $(this).toggleClass('active');
     });
 
-    favme.on('click touchstart', function() {
+    favme.on('click touchstart', function () {
         $(this).toggleClass('is_animating');
     });
 
-    favme.on('animationend', function() {
+    favme.on('animationend', function () {
         $(this).toggleClass('is_animating');
     });
 
@@ -144,7 +144,7 @@
     }
 
     // :: PreventDefault a Click
-    $("a[href='#']").on('click', function($) {
+    $("a[href='#']").on('click', function ($) {
         $.preventDefault();
     });
 
@@ -174,7 +174,7 @@
         if (queryStringSpliter) {
 
             singleItems = queryStringSpliter.split("&");
-            singleItems.forEach(function(items) {
+            singleItems.forEach(function (items) {
 
                 var query = items.split("=");
                 queries[query[0]] = query[1];
@@ -183,7 +183,47 @@
         return queries;
     }
 
+    function renderCart(productId) {
+
+        // Getting product details
+        var xhrObj = makeAjax("../response/top6.json", "get");
+        xhrObj.done(function (res) {
+            // Such promise, much wow!
+            var productLink,
+                brandName,
+                productName,
+                size,
+                color,
+                price;
+            if (res[productId]) {
+                var product = res[productId];
+                productLink = "single-product-details.html?product_id="+productId;
+                brandName = product.brandName;
+                productName = product.productName;
+                size = $("#productSize").next().find(".current").html().split(":")[1].trim();
+                color = $("#productColor").next().find(".current").html().split(":")[1].trim();
+                price = "test";
+            }
+        });
+        var template = '<!-- Single Cart Item -->' +
+            '<div class="single-cart-item">' +
+            '<a href="#" class="product-image">' +
+            '<img src="img/product-img/product-3.jpg" class="cart-thumb" alt="">' +
+            '<!-- Cart Item Desc -->' +
+            '<div class="cart-item-desc">' +
+            '<span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>' +
+            '<span class="badge">Mango</span>' +
+            '<h6>Button Through Strap Mini Dress</h6>' +
+            '<p class="size">Size: S</p>' +
+            '<p class="color">Color: Red</p>' +
+            '<p class="price">$45.00</p>' +
+            '</div>' +
+            '</a>' +
+            '</div>';
+    }
+
     window.makeAjax = makeAjax;
     window.getQuery = getQuery;
+    window.renderCart = renderCart;
 
 })(jQuery);
