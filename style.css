@@ -1,3 +1,7 @@
+.no-display {
+    display: none !important;
+}
+
 .logo-dimen {
     width: 13rem;
 }

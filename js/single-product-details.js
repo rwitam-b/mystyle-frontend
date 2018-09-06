@@ -1,11 +1,11 @@
-(function ($) {
+(function($) {
     'use strict';
 
     var queryString = getQuery(window.location.href);
     if (queryString.product_id) {
 
         var xhrObj = makeAjax("../response/prod_ids.json", "get");
-        xhrObj.done(function (itemDetail) {
+        xhrObj.done(function(itemDetail) {
 
             var imagesList,
                 colorList,
@@ -14,7 +14,7 @@
 
             // Keeping data of current page product to avoid AJAX call during "Add To Cart"
             window.localStorage.setItem("mystyle_curr_prod", JSON.stringify(itemDetails));
-            itemDetails.imageUrls.forEach(function (singleImages) {
+            itemDetails.imageUrls.forEach(function(singleImages) {
 
                 if (!imagesList) {
                     imagesList = '<img class="single-image-item" src="' + singleImages + '" alt="">';
@@ -26,7 +26,7 @@
             $('.product_thumbnail_slides').owlCarousel({
                 items: 1,
                 margin: 0,
-                loop: itemDetails.imageUrls.length > 1,
+                //loop: itemDetails.imageUrls.length > 1,
                 nav: true,
                 navText: ["<img src='img/core-img/long-arrow-left.svg' alt=''>", "<img src='img/core-img/long-arrow-right.svg' alt=''>"],
                 dots: false,
@@ -38,7 +38,7 @@
             $(".product-name").html(itemDetails.productName);
             $(".product-price").html("&#x20b9;" + itemDetails.discountedPrice + "&nbsp; &nbsp;<span>&#x20b9;" + itemDetails.actualPrice + "</span>");
             if (itemDetails.specs.color) {
-                itemDetails.specs.color.forEach(function (color) {
+                itemDetails.specs.color.forEach(function(color) {
 
                     if (!colorList) {
                         colorList = '<option value="value">Color: ' + color + '</option>';
@@ -52,7 +52,7 @@
                 $("#productColor").hide();
             }
             if (itemDetails.specs.size) {
-                itemDetails.specs.size.forEach(function (size) {
+                itemDetails.specs.size.forEach(function(size) {
 
                     if (!sizeList) {
                         sizeList = '<option value="value">Size: ' + size + '</option>';
