@@ -183,40 +183,22 @@
         return queries;
     }
 
-    function renderCart(productId) {
-
-        // Getting product details
-        var xhrObj = makeAjax("../response/top6.json", "get");
-        xhrObj.done(function (res) {
-            // Such promise, much wow!
-            var productLink,
-                brandName,
-                productName,
-                size,
-                color,
-                price;
-            if (res[productId]) {
-                var product = res[productId];
-                productLink = "single-product-details.html?product_id="+productId;
-                brandName = product.brandName;
-                productName = product.productName;
-                size = $("#productSize").next().find(".current").html().split(":")[1].trim();
-                color = $("#productColor").next().find(".current").html().split(":")[1].trim();
-                price = "test";
-            }
-        });
+    function renderCart() {
+        // Getting product details from local storage
+        var currentProduct = JSON.parse(window.localStorage.getItem("mystyle_curr_prod"));
+        var productImage = currentProduct.imageUrls[Math.floor(Math.random() * currentProduct.imageUrls.length)];
         var template = '<!-- Single Cart Item -->' +
             '<div class="single-cart-item">' +
-            '<a href="#" class="product-image">' +
-            '<img src="img/product-img/product-3.jpg" class="cart-thumb" alt="">' +
+            '<a href="single-product-details.html?product_id=' + currentProduct.id + '" class="product-image">' +
+            '<img src="' + productImage + '" class="cart-thumb" alt="">' +
             '<!-- Cart Item Desc -->' +
             '<div class="cart-item-desc">' +
             '<span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>' +
-            '<span class="badge">Mango</span>' +
-            '<h6>Button Through Strap Mini Dress</h6>' +
+            '<span class="badge">' + currentProduct.brandName + '</span>' +
+            '<h6>' + currentProduct.productName + '</h6>' +
             '<p class="size">Size: S</p>' +
             '<p class="color">Color: Red</p>' +
-            '<p class="price">$45.00</p>' +
+            '<p class="price">₹' + currentProduct.discountedPrice + '</p>' +
             '</div>' +
             '</a>' +
             '</div>';
