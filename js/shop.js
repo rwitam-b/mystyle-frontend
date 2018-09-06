@@ -7,7 +7,7 @@
         $(".page-header").html(queryString.category);
 
         function renderTemplate(content) {
-
+            
             var template = '<!-- Single Product -->' +
                 '<div class="col-12 col-sm-6 col-lg-4" id=' + content.details.id + '>' +
                 '<div class="single-product-wrapper">' +
@@ -46,7 +46,6 @@
         xhrObj.done(function(res) {
             var domContent = null;
             res.forEach(function(items) {
-
                 var singleProductDetails = {};
                 singleProductDetails = {
                     "images": items.imageUrls,
