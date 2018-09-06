@@ -78,13 +78,14 @@
     }
 
     // :: Sticky Active Code
-    $window.on('scroll', function () {
-        if ($window.scrollTop() > 0) {
-            $('.header_area').addClass('sticky');
-        } else {
-            $('.header_area').removeClass('sticky');
-        }
-    });
+    $window
+        .on('scroll', function () {
+            if ($window.scrollTop() > 0) {
+                $('.header_area').addClass('sticky');
+            } else {
+                $('.header_area').removeClass('sticky');
+            }
+        });
 
     // :: Nice Select Active Code
     /*if ($.fn.niceSelect) {
@@ -104,11 +105,16 @@
             range: true,
             min: min,
             max: max,
-            values: [value_min, value_max],
+            values: [
+                value_min, value_max
+            ],
             slide: function (event, ui) {
                 var result = label_result + " " + unit + ui.values[0] + ' - ' + unit + ui.values[1];
                 console.log(t);
-                t.closest('.slider-range').find('.range-price').html(result);
+                t
+                    .closest('.slider-range')
+                    .find('.range-price')
+                    .html(result);
             }
         });
     });
@@ -144,15 +150,16 @@
     }
 
     // :: PreventDefault a Click
-    $("a[href='#']").on('click', function ($) {
-        $.preventDefault();
-    });
+    $("a[href='#']")
+        .on('click', function ($) {
+            $.preventDefault();
+        });
 
     function makeAjax(url, type) {
         return $.ajax({
             url: url,
             type: type,
-            crossDomain: true,
+            crossDomain: true
         });
     }
     // ## window functions ##
@@ -162,7 +169,7 @@
         return $.ajax({
             url: url,
             type: type,
-            crossDomain: true,
+            crossDomain: true
         });
     }
 
@@ -183,32 +190,38 @@
         return queries;
     }
 
+    function removeFromCart(elem) {
+        var cartItemDiv = elem.parentElement.parentElement.parentElement;
+        var cartDetailsDiv = document.getElementsByClassName("cart-list")[0];
+        cartDetailsDiv.removeChild(cartItemDiv);
+    }
+
     function renderCart() {
         // Getting product details from local storage
         var currentProduct = JSON.parse(window.localStorage.getItem("mystyle_curr_prod"));
         var productImage = currentProduct.imageUrls[Math.floor(Math.random() * currentProduct.imageUrls.length)];
-        var productColor = $("#productColor").next().find(".current").html().split(":")[1].trim();
-        var productSize = $("#productSize").next().find(".current").html().split(":")[1].trim();
-        var template = '<!-- Single Cart Item -->' +
-            '<div class="single-cart-item">' +
-            '<a href="single-product-details.html?product_id=' + currentProduct.id + '" class="product-image">' +
-            '<img src="' + productImage + '" class="cart-thumb" alt="">' +
-            '<!-- Cart Item Desc -->' +
-            '<div class="cart-item-desc">' +
-            '<span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>' +
-            '<span class="badge">' + currentProduct.brandName + '</span>' +
-            '<h6>' + currentProduct.productName + '</h6>' +
-            '<p class="size">Size: ' + productSize + '</p>' +
-            '<p class="color">Color: ' + productColor + '</p>' +
-            '<p class="price">₹' + currentProduct.discountedPrice + '</p>' +
-            '</div>' +
-            '</a>' +
-            '</div>';
+        var productColor = $("#productColor")
+            .next()
+            .find(".current")
+            .html()
+            .split(":")[1]
+            .trim();
+        var productSize = $("#productSize")
+            .next()
+            .find(".current")
+            .html()
+            .split(":")[1]
+            .trim();
+        var template = '<!-- Single Cart Item --><div class="single-cart-item"><div class="product-image' +
+            '"><img src="' + productImage + '" class="cart-thumb" alt=""><!-- Cart Item Desc --><div class="cart-item-desc"><' +
+            'span class="product-remove" onclick="removeFromCart(this)"><i class="fa fa-close' +
+            '" aria-hidden="true"></i></span><span class="badge">' + currentProduct.brandName + '</span><a href="single-product-details.html?product_id=' + currentProduct.productId + '"><h6>' + currentProduct.productName + '</h6></a><p class="size">Size: ' + productSize + '</p><p class="color">Color: ' + productColor + '</p><p class="price">₹' + currentProduct.discountedPrice + '</p></div></div></div>';
         $(".cart-list").append(template);
     }
 
     window.makeAjax = makeAjax;
     window.getQuery = getQuery;
     window.renderCart = renderCart;
+    window.removeFromCart = removeFromCart;
 
 })(jQuery);

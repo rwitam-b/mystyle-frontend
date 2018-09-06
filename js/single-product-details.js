@@ -6,10 +6,11 @@
 
         var xhrObj = makeAjax("../response/prod_ids.json", "get");
         xhrObj.done(function (itemDetail) {
+            //itemDetail = JSON.parse(itemDetail);
             var imagesList,
                 colorList,
                 sizeList,
-                itemDetails = itemDetail[queryString.product_id];
+                itemDetails = itemDetail[queryString.product_id];                
 
             // Keeping data of current page product to avoid AJAX call during "Add To Cart"
             window.localStorage.setItem("mystyle_curr_prod", JSON.stringify(itemDetails));
