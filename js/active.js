@@ -204,6 +204,7 @@
             '</div>' +
             '</a>' +
             '</div>';
+        $(".cart-list").append(template);
     }
 
     window.makeAjax = makeAjax;
