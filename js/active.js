@@ -190,38 +190,93 @@
         return queries;
     }
 
+    function updateCart(cartProductId, cartObject, operation) {
+        // Updating cart data to local storage
+        if (operation && operation == "ADD") {
+            // Add to cart operation
+            if (cartProductId && cartObject) {
+                if (window.localStorage.getItem("cart_data")) {
+                    var cart_data = JSON.parse(window.localStorage.getItem("cart_data"));
+                    cart_data[cartProductId] = cartObject;
+                    window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
+                    // Calculating cart summary
+                } else {
+                    var cart_data = new Object();
+                    cart_data[cartProductId] = cartObject;
+                    window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
+                }
+            }
+        } else if (operation && operation == "REMOVE" && cartProductId) {
+            // Remove from cart operation
+            if (window.localStorage.getItem("cart_data")) {
+                var cart_data = JSON.parse(window.localStorage.getItem("cart_data"));
+                delete cart_data[cartProductId];
+                window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
+            }
+        }
+    }
+
     function removeFromCart(elem) {
         var cartItemDiv = elem.parentElement.parentElement.parentElement;
         var cartDetailsDiv = document.getElementsByClassName("cart-list")[0];
+        // Clear From Local Storage
+        updateCart(cartItemDiv.id, null, "REMOVE");
+
+        // Clear from DOM
         cartDetailsDiv.removeChild(cartItemDiv);
     }
 
-    function renderCart() {
-        // Getting product details from local storage
+    function addToCart() {
+        // Getting current page product details from local storage        
         var currentProduct = JSON.parse(window.localStorage.getItem("mystyle_curr_prod"));
-        var productImage = currentProduct.imageUrls[Math.floor(Math.random() * currentProduct.imageUrls.length)];
-        var productColor = $("#productColor")
-            .next()
-            .find(".current")
-            .html()
-            .split(":")[1]
-            .trim();
-        var productSize = $("#productSize")
-            .next()
-            .find(".current")
-            .html()
-            .split(":")[1]
-            .trim();
-        var template = '<!-- Single Cart Item --><div class="single-cart-item"><div class="product-image' +
-            '"><img src="' + productImage + '" class="cart-thumb" alt=""><!-- Cart Item Desc --><div class="cart-item-desc"><' +
-            'span class="product-remove" onclick="removeFromCart(this)"><i class="fa fa-close' +
-            '" aria-hidden="true"></i></span><span class="badge">' + currentProduct.brandName + '</span><a href="single-product-details.html?product_id=' + currentProduct.productId + '"><h6>' + currentProduct.productName + '</h6></a><p class="size">Size: ' + productSize + '</p><p class="color">Color: ' + productColor + '</p><p class="price">₹' + currentProduct.discountedPrice + '</p></div></div></div>';
+
+        // Constructing cart object        
+        var cartObject = {
+            "image": currentProduct.imageUrls[Math.floor(Math.random() * currentProduct.imageUrls.length)],
+            "color": $("#productColor")
+                .next()
+                .find(".current")
+                .html()
+                .split(":")[1]
+                .trim(),
+            "size": $("#productSize")
+                .next()
+                .find(".current")
+                .html()
+                .split(":")[1]
+                .trim(),
+            "brandName": currentProduct.brandName,
+            "productId": currentProduct.productId,
+            "productName": currentProduct.productName,
+            "price": currentProduct.discountedPrice
+        };
+        // Update cart data in local storage
+        updateCart(cartObject.color + cartObject.size + cartObject.productId, cartObject, "ADD");
+
+        // Rendering to DOM
+        renderCart(cartObject);
+    }
+
+    function renderCart(cartObject) {
+        var template = '<!-- Single Cart Item -->' +
+            '<div class="single-cart-item" id="' + cartObject.color + cartObject.size + cartObject.productId + '">' +
+            '<div class="product-image">' +
+            '<img src="' + cartObject.image + '" class="cart-thumb" alt="">' +
+            '<!-- Cart Item Desc -->' +
+            '<div class="cart-item-desc">' +
+            '<span class="product-remove" onclick="removeFromCart(this)"><i class="fa fa-close" aria-hidden="true"></i></span>' +
+            '<span class="badge">' + cartObject.brandName + '</span>' +
+            '<a href="single-product-details.html?product_id=' + cartObject.productId + '"><h6>' + cartObject.productName + '</h6></a>' +
+            '<p class="size">Size: ' + cartObject.size + '</p>' +
+            '<p class="color">Color: ' + cartObject.color + '</p>' +
+            '<p class="price">₹' + cartObject.price + '</p>' +
+            '</div></div></div>';
         $(".cart-list").append(template);
     }
 
     window.makeAjax = makeAjax;
     window.getQuery = getQuery;
-    window.renderCart = renderCart;
+    window.addToCart = addToCart;
     window.removeFromCart = removeFromCart;
 
 })(jQuery);
