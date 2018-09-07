@@ -204,7 +204,7 @@
                     }
                     window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
                 } else {
-                    var cart_data = new Object();
+                    var cart_data = new Object();                    
                     cart_data[cartProductId] = cartObject;
                     window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
                 }
@@ -303,12 +303,12 @@
     }
 
     // Rendering cart data into DOM from local storage on fresh page load
-    $(document).ready(function () {
-        var cart_data = window.localStorage.cart_data;
-        if (cart_data) {
-            renderCart(JSON.parse(cart_data));
-        }
-    });
+    //$(document).ready(function () {
+    var cart_data = window.localStorage.cart_data;
+    if (cart_data) {
+        renderCart(JSON.parse(cart_data));
+    }
+    //});
 
     window.makeAjax = makeAjax;
     window.getQuery = getQuery;
