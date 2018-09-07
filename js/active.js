@@ -279,8 +279,16 @@
         var cart_data = window.localStorage.cart_data;
         if (cart_data) {
             cart_data = JSON.parse(cart_data);
-            Object.keys(cart_data).forEach(function(cart_item){
-                renderCart(cart_item);
+            var itemCount = Object.keys(cart_data).length;
+
+            // Cart items rendering
+            Object.keys(cart_data).forEach(function (cart_item) {
+                renderCart(cart_data[cart_item]);
+            });
+
+            // Cart item number rendering
+            $(".cart-amount").each(function () {
+                $(this).html(itemCount);
             });
         }
     });
