@@ -274,9 +274,23 @@
         $(".cart-list").append(template);
     }
 
+    // Rendering cart data into DOM from local storage on fresh page load
+    $(document).ready(function () {
+        var cart_data = window.localStorage.cart_data;
+        if (cart_data) {
+            cart_data = JSON.parse(cart_data);
+            cart_data.forEach(function(cart_item){
+                renderCart(cart_item);
+            });
+        }
+    });
+
     window.makeAjax = makeAjax;
     window.getQuery = getQuery;
     window.addToCart = addToCart;
     window.removeFromCart = removeFromCart;
+    window.renderCart = renderCart;
+
+
 
 })(jQuery);
