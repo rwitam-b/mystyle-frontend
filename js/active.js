@@ -225,6 +225,7 @@
     }
 
     function removeFromCart(elem) {
+        var cartItemDiv = elem.parentElement.parentElement.parentElement;
         // Clear From Local Storage
         updateCart(cartItemDiv.id, null, "REMOVE");
     }
@@ -278,7 +279,7 @@
                     '<a href="single-product-details.html?product_id=' + cartObject.productId + '"><h6>' + cartObject.productName + '</h6></a>' +
                     '<p class="size">Size: ' + cartObject.size + '</p>' +
                     '<p class="color">Color: ' + cartObject.color + '</p>' +
-                    '<p class="number">Number: ' + cartObject.count + '</p>' +
+                    '<p class="color">Number: ' + cartObject.count + '</p>' +
                     '<p class="price">₹' + cartObject.price + '</p>' +
                     '</div></div></div>';
                 $(".cart-list").append(template);
