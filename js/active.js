@@ -279,7 +279,7 @@
         var cart_data = window.localStorage.cart_data;
         if (cart_data) {
             cart_data = JSON.parse(cart_data);
-            cart_data.forEach(function(cart_item){
+            Object.keys(cart_data).forEach(function(cart_item){
                 renderCart(cart_item);
             });
         }
