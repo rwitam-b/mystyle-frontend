@@ -305,7 +305,7 @@
     $(document).ready(function () {
         var cart_data = window.localStorage.cart_data;
         if (cart_data) {
-            renderCart(cart_data);
+            renderCart(JSON.parse(cart_data));
         }
     });
 
