@@ -197,33 +197,36 @@
             if (cartProductId && cartObject) {
                 if (window.localStorage.getItem("cart_data")) {
                     var cart_data = JSON.parse(window.localStorage.getItem("cart_data"));
-                    cart_data[cartProductId] = cartObject;
+                    if (cart_data[cartProductId]) {
+                        cart_data[cartProductId].count += 1;
+                    } else {
+                        cart_data[cartProductId] = cartObject;
+                    }
                     window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
-                    // Calculating cart summary
                 } else {
                     var cart_data = new Object();
                     cart_data[cartProductId] = cartObject;
                     window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
                 }
             }
+            // Rendering to DOM
+            renderCart(JSON.parse(window.localStorage.getItem("cart_data")));
         } else if (operation && operation == "REMOVE" && cartProductId) {
             // Remove from cart operation
             if (window.localStorage.getItem("cart_data")) {
                 var cart_data = JSON.parse(window.localStorage.getItem("cart_data"));
                 delete cart_data[cartProductId];
                 window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
+
+                // Rendering to DOM
+                renderCart(JSON.parse(window.localStorage.getItem("cart_data")));
             }
         }
     }
 
     function removeFromCart(elem) {
-        var cartItemDiv = elem.parentElement.parentElement.parentElement;
-        var cartDetailsDiv = document.getElementsByClassName("cart-list")[0];
         // Clear From Local Storage
         updateCart(cartItemDiv.id, null, "REMOVE");
-
-        // Clear from DOM
-        cartDetailsDiv.removeChild(cartItemDiv);
     }
 
     function addToCart() {
@@ -232,6 +235,7 @@
 
         // Constructing cart object        
         var cartObject = {
+            "count": 1,
             "image": currentProduct.imageUrls[Math.floor(Math.random() * currentProduct.imageUrls.length)],
             "color": $("#productColor")
                 .next()
@@ -252,44 +256,56 @@
         };
         // Update cart data in local storage
         updateCart(cartObject.color + cartObject.size + cartObject.productId, cartObject, "ADD");
-
-        // Rendering to DOM
-        renderCart(cartObject);
     }
 
-    function renderCart(cartObject) {
-        var template = '<!-- Single Cart Item -->' +
-            '<div class="single-cart-item" id="' + cartObject.color + cartObject.size + cartObject.productId + '">' +
-            '<div class="product-image">' +
-            '<img src="' + cartObject.image + '" class="cart-thumb" alt="">' +
-            '<!-- Cart Item Desc -->' +
-            '<div class="cart-item-desc">' +
-            '<span class="product-remove" onclick="removeFromCart(this)"><i class="fa fa-close" aria-hidden="true"></i></span>' +
-            '<span class="badge">' + cartObject.brandName + '</span>' +
-            '<a href="single-product-details.html?product_id=' + cartObject.productId + '"><h6>' + cartObject.productName + '</h6></a>' +
-            '<p class="size">Size: ' + cartObject.size + '</p>' +
-            '<p class="color">Color: ' + cartObject.color + '</p>' +
-            '<p class="price">₹' + cartObject.price + '</p>' +
-            '</div></div></div>';
-        $(".cart-list").append(template);
+    function renderCart(cart_data) {
+        // Clearing existing rendered cart elements
+        $(".cart-list").html("");
+        if (cart_data) {
+            var itemCount = Object.keys(cart_data).length;
+            var cartValue = 0;
+            // Cart items rendering
+            Object.keys(cart_data).forEach(function (i) {
+                var cartObject = cart_data[i];
+                var template = '<!-- Single Cart Item -->' +
+                    '<div class="single-cart-item" id="' + cartObject.color + cartObject.size + cartObject.productId + '">' +
+                    '<div class="product-image">' +
+                    '<img src="' + cartObject.image + '" class="cart-thumb" alt="">' +
+                    '<!-- Cart Item Desc -->' +
+                    '<div class="cart-item-desc">' +
+                    '<span class="product-remove" onclick="removeFromCart(this)"><i class="fa fa-close" aria-hidden="true"></i></span>' +
+                    '<span class="badge">' + cartObject.brandName + '</span>' +
+                    '<a href="single-product-details.html?product_id=' + cartObject.productId + '"><h6>' + cartObject.productName + '</h6></a>' +
+                    '<p class="size">Size: ' + cartObject.size + '</p>' +
+                    '<p class="color">Color: ' + cartObject.color + '</p>' +
+                    '<p class="number">Number: ' + cartObject.count + '</p>' +
+                    '<p class="price">₹' + cartObject.price + '</p>' +
+                    '</div></div></div>';
+                $(".cart-list").append(template);
+            });
+
+            // Calculating cart valuation
+            Object.keys(cart_data).forEach(function (i) {
+                cartValue += cart_data[i].price;
+            });
+
+            // Cart item count rendering
+            $(".cart-amount").each(function () {
+                $(this).html(itemCount);
+            });
+
+            // Cart Summary rendering
+            $(".cartValue").each(function () {
+                $(this).html("₹" + (cartValue.toFixed(2)));
+            });
+        }
     }
 
     // Rendering cart data into DOM from local storage on fresh page load
     $(document).ready(function () {
         var cart_data = window.localStorage.cart_data;
         if (cart_data) {
-            cart_data = JSON.parse(cart_data);
-            var itemCount = Object.keys(cart_data).length;
-
-            // Cart items rendering
-            Object.keys(cart_data).forEach(function (cart_item) {
-                renderCart(cart_data[cart_item]);
-            });
-
-            // Cart item number rendering
-            $(".cart-amount").each(function () {
-                $(this).html(itemCount);
-            });
+            renderCart(cart_data);
         }
     });
 
@@ -297,8 +313,5 @@
     window.getQuery = getQuery;
     window.addToCart = addToCart;
     window.removeFromCart = removeFromCart;
-    window.renderCart = renderCart;
-
-
 
 })(jQuery);
