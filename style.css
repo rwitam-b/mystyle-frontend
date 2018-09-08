@@ -23,11 +23,12 @@
 }
 
 .single-image-item {
-    max-height: 80vh;
-    height: auto;
-    width: auto !important;
-    margin-left: 20%;
     margin-top: 1rem;
+    height: 88vh;
+}
+
+.product-images {
+    padding: 0 20px;
 }
 
 #scrollUp {
@@ -35,16 +36,13 @@
 }
 
 @media only screen and (max-width: 768px) {
-
     /* For mobile phones: */
     .logo-dimen {
         width: 7rem;
     }
-
     .single_catagory_area {
         margin-bottom: 1rem;
     }
-
     .single-image-item {
         margin-left: 26%;
     }
