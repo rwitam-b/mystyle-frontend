@@ -162,6 +162,13 @@
             crossDomain: true
         });
     }
+
+    // "Show Collection" button scroll down animation
+    $("#show-collection").click(function () {
+        $('html, body').animate({
+            scrollTop: $("#productCategoryArea").offset().top - $("body").offset().top
+        }, 1000);
+    });
     // ## window functions ##
 
     function makeAjax(url, type) {
@@ -204,7 +211,7 @@
                     }
                     window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
                 } else {
-                    var cart_data = new Object();                    
+                    var cart_data = new Object();
                     cart_data[cartProductId] = cartObject;
                     window.localStorage.setItem("cart_data", JSON.stringify(cart_data));
                 }
