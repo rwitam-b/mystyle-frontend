@@ -48,9 +48,4 @@
     .single_catagory_area {
         margin-bottom: 1rem;
     }
-    .single-image-item {}
-}
-
-@media only screen and (max-width: 1330px) {
-    .single-image-item {}
 }
