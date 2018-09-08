@@ -6,7 +6,7 @@
     width: 13rem;
 }
 
- ::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
 }
 
@@ -30,14 +30,21 @@
     margin-top: 1rem;
 }
 
+#scrollUp {
+    border-radius: 50px !important;
+}
+
 @media only screen and (max-width: 768px) {
+
     /* For mobile phones: */
     .logo-dimen {
         width: 7rem;
     }
+
     .single_catagory_area {
         margin-bottom: 1rem;
     }
+
     .single-image-item {
         margin-left: 26%;
     }
