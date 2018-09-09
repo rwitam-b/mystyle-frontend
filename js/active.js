@@ -266,6 +266,8 @@
         updateCart(cartObject.color + cartObject.size + cartObject.productId, cartObject, "ADD");
     }
 
+    var globalCartData = new Object();
+
     function renderCart(cart_data) {
         // Clearing existing rendered cart elements
         $(".cart-list").html("");
@@ -301,11 +303,13 @@
             $(".cart-amount").each(function () {
                 $(this).html(itemCount);
             });
+            globalCartData["itemCount"] = itemCount;
 
             // Cart Summary rendering
             $(".cartValue").each(function () {
                 $(this).html("₹" + (cartValue.toFixed(2)));
             });
+            globalCartData["cartValue"] = itemCount;
         }
     }
 
@@ -313,11 +317,12 @@
     var cart_data = window.localStorage.cart_data;
     if (cart_data) {
         renderCart(JSON.parse(cart_data));
-    }    
+    }
 
     window.makeAjax = makeAjax;
     window.getQuery = getQuery;
     window.addToCart = addToCart;
     window.removeFromCart = removeFromCart;
+    window.globalCartData = globalCartData;
 
 })(jQuery);
