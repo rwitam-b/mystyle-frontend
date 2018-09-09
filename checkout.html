@@ -27,8 +27,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="/"><img class="logo-dimen" src="img/core-img/MyStyle-Logo-Inverse.png"
-                        alt=""></a>
+                <a class="nav-brand" href="/"><img class="logo-dimen" src="img/core-img/MyStyle-Logo-Inverse.png" alt=""></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -147,21 +146,19 @@
                                     <input type="text" class="form-control" id="last_name" value="" required>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <label for="company">Company Name</label>
-                                    <input type="text" class="form-control" id="company" value="">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="country">Country <span>*</span></label>
-                                    <select class="w-100" id="country">
-                                        <option value="usa">United States</option>
-                                        <option value="uk">United Kingdom</option>
-                                        <option value="ger">Germany</option>
-                                        <option value="fra">France</option>
-                                        <option value="ind">India</option>
-                                        <option value="aus">Australia</option>
-                                        <option value="bra">Brazil</option>
-                                        <option value="cana">Canada</option>
+                                    <label for="town">Town/City <span>*</span></label>
+                                    <select class="w-100" id="town">
+                                        <option value="snr">Shyamnagar</option>
+                                        <option value="ip">Ichhapur</option>
+                                        <option value="ptf">Palta</option>
+                                        <option value="bp">Barrackpore</option>
+                                        <option value="nh">Naihati</option>
+                                        <option value="o">Others</option>
                                     </select>
+                                </div>
+                                <div class="col-12 mb-3 no-display" id="otherArea">
+                                    <input placeholder="Enter non-listed area name here" type="text" class="form-control"
+                                        id="otherTown" value="">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="street_address">Address <span>*</span></label>
@@ -172,14 +169,7 @@
                                     <label for="postcode">Postcode <span>*</span></label>
                                     <input type="text" class="form-control" id="postcode" value="">
                                 </div>
-                                <div class="col-12 mb-3">
-                                    <label for="city">Town/City <span>*</span></label>
-                                    <input type="text" class="form-control" id="city" value="">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="state">Province <span>*</span></label>
-                                    <input type="text" class="form-control" id="state" value="">
-                                </div>
+
                                 <div class="col-12 mb-3">
                                     <label for="phone_number">Phone No <span>*</span></label>
                                     <input type="number" class="form-control" id="phone_number" min="0" value="">
@@ -187,22 +177,6 @@
                                 <div class="col-12 mb-4">
                                     <label for="email_address">Email Address <span>*</span></label>
                                     <input type="email" class="form-control" id="email_address" value="">
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="custom-control custom-checkbox d-block mb-2">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label" for="customCheck1">Terms and conitions</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox d-block mb-2">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                        <label class="custom-control-label" for="customCheck2">Create an accout</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox d-block">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                        <label class="custom-control-label" for="customCheck3">Subscribe to our
-                                            newsletter</label>
-                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -231,7 +205,8 @@
                                 <div class="card-header" role="tab" id="headingTwo">
                                     <h6 class="mb-0">
                                         <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
-                                            aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on delivery</a>
+                                            aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on
+                                            delivery</a>
                                     </h6>
                                 </div>
                                 <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo"
