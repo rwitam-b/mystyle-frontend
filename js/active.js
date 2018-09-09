@@ -309,7 +309,7 @@
             $(".cartValue").each(function () {
                 $(this).html("₹" + (cartValue.toFixed(2)));
             });
-            globalCartData["cartValue"] = itemCount;
+            globalCartData["cartValue"] = cartValue.toFixed(2);
         }
     }
 
