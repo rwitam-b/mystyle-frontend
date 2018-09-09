@@ -30,6 +30,7 @@
         } else {
             $("#shippingCharge").text("₹" + shippingCharge);
         }
+        $("#totalCartValue").text("₹" + (globalCartData.cartValue + shippingCharge));
     });
 
     if (cart_data) {
@@ -44,9 +45,9 @@
                 ' <span>₹' + cartObject.price + ' x' + cartObject.count + '</span></li>';
         });
 
-        orderDetails += '<li><span>Subtotal</span> <span>₹' + globalCartData.cartValue + '</span></li>';
+        orderDetails += '<li><span>Subtotal</span> <span id="cartValue">₹' + globalCartData.cartValue + '</span></li>';
         orderDetails += '<li><span>Shipping</span> <span id="shippingCharge">Free</span></li>';
-        orderDetails += '<li><span>Total</span> <span>₹' + globalCartData.cartValue + '</span></li>';
+        orderDetails += '<li><span>Total</span> <span id="totalCartValue">₹' + globalCartData.cartValue + '</span></li>';
 
         // Rendering order details to DOM
         $(".order-details-form").html(orderDetails);
