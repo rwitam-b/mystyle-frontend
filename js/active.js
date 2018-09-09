@@ -270,11 +270,12 @@
         // Clearing existing rendered cart elements
         $(".cart-list").html("");
         if (cart_data) {
-            var itemCount = Object.keys(cart_data).length;
-            var cartValue = 0;
-            // Cart items rendering
+            var itemCount = 0;
+            var cartValue = 0.0;
             Object.keys(cart_data).forEach(function (i) {
                 var cartObject = cart_data[i];
+
+                // Cart items rendering
                 var template = '<!-- Single Cart Item -->' +
                     '<div class="single-cart-item" id="' + cartObject.color + cartObject.size + cartObject.productId + '">' +
                     '<div class="product-image">' +
@@ -286,15 +287,14 @@
                     '<a href="single-product-details.html?product_id=' + cartObject.productId + '"><h6>' + cartObject.productName + '</h6></a>' +
                     '<p class="size">Size: ' + cartObject.size + '</p>' +
                     '<p class="color">Color: ' + cartObject.color + '</p>' +
-                    '<p class="color">Number: ' + cartObject.count + '</p>' +
+                    '<p class="color">Quantity: ' + cartObject.count + '</p>' +
                     '<p class="price">₹' + cartObject.price + '</p>' +
                     '</div></div></div>';
                 $(".cart-list").append(template);
-            });
 
-            // Calculating cart valuation
-            Object.keys(cart_data).forEach(function (i) {
-                cartValue += cart_data[i].price;
+                // Adding product count & calculating price
+                itemCount += cartObject.count;
+                cartValue += cartObject.count * cartObject.price;
             });
 
             // Cart item count rendering
@@ -309,13 +309,11 @@
         }
     }
 
-    // Rendering cart data into DOM from local storage on fresh page load
-    //$(document).ready(function () {
+    // Rendering cart data into DOM from local storage on fresh page load    
     var cart_data = window.localStorage.cart_data;
     if (cart_data) {
         renderCart(JSON.parse(cart_data));
-    }
-    //});
+    }    
 
     window.makeAjax = makeAjax;
     window.getQuery = getQuery;
