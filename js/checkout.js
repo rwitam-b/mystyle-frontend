@@ -30,7 +30,7 @@
         } else {
             $("#shippingCharge").text("₹" + shippingCharge);
         }
-        $("#totalCartValue").text("₹" + (globalCartData.cartValue + shippingCharge));
+        $("#totalCartValue").text("₹" + (parseFloat(globalCartData.cartValue) + shippingCharge).toFixed(2));
     });
 
     if (cart_data) {
