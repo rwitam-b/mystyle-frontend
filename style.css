@@ -40,7 +40,7 @@
     border-radius: 50px !important;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
     /* For mobile phones: */
     .logo-dimen {
         width: 7rem;
