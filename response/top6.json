@@ -10,7 +10,7 @@
         "size": ["M"],
         "color": ["White", "Yellow"]
     },
-    "imageUrls": ["img/bh/8030_yellow.jpg", "img/bh/8030_white.jpg"]
+    "imageUrls": ["img/products/bh/8030_yellow.jpg", "img/products/bh/8030_white.jpg"]
 }, {
     "productId": 2,
     "categoryId": 1,
