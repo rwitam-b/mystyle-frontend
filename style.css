@@ -41,14 +41,21 @@
 }
 
 @media only screen and (max-width: 900px) {
+
     /* For mobile phones: */
     .logo-dimen {
         width: 7rem;
     }
+
     .single_catagory_area {
         margin-bottom: 1rem;
     }
+
     .single-image-item {
         height: auto !important;
     }
+}
+
+.single-product-wrapper .product-img {
+    border: 2px solid #e7be71;
 }
