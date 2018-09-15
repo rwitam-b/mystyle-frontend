@@ -23,11 +23,7 @@
                 '<!-- Product Badge -->' +
                 '<!--div class="product-badge new-badge">' +
                 '<span>New</span>' +
-                '</div-->' +
-                '<!-- Favourite -->' +
-                '<div class="product-favourite">' +
-                '<a href="#" class="favme fa fa-heart"></a>' +
-                '</div>' +
+                '</div-->' +                
                 '</div>' +
                 '<!-- Product Description -->' +
                 '<div class="product-description">' +
