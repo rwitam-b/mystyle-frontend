@@ -9,7 +9,7 @@
             var imagesList,
                 colorList,
                 sizeList,
-                itemDetails = itemDetail[queryString.product_id];                
+                itemDetails = itemDetail[queryString.product_id];
 
             // Keeping data of current page product to avoid AJAX call during "Add To Cart"
             window.localStorage.setItem("mystyle_curr_prod", JSON.stringify(itemDetails));

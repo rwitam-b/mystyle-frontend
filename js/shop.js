@@ -39,7 +39,7 @@
         }
 
         var xhrObj = makeAjax("../response/all_tshirt.json", "get");
-        xhrObj.done(function(res) {
+        xhrObj.done(function(res) {            
             var domContent = null;
             res.forEach(function(items) {
                 var singleProductDetails = {};

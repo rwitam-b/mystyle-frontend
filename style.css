@@ -54,6 +54,12 @@
     .single-image-item {
         height: auto !important;
     }
+
+    .single-product-wrapper .product-img img {
+        height: auto;
+        width: 100vw !important;
+        margin: 0 auto !important;
+    }
 }
 
 .single-product-wrapper .product-img {
