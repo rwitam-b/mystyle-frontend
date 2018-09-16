@@ -65,3 +65,7 @@
 .single-product-wrapper .product-img {
     border: 2px solid #e7be71;
 }
+
+.single_product_details_area .single_product_desc span {
+    font-size: medium;
+}
