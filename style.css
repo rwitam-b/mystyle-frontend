@@ -69,3 +69,7 @@
 .single_product_details_area .single_product_desc span {
     font-size: medium;
 }
+
+.welcome_area .hero-content h2 {
+    color: #ffffff;
+}
